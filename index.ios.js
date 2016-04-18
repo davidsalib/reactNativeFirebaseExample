@@ -19,10 +19,9 @@ import Swipeout from 'react-native-swipeout';
 var Firebase = require("firebase");
 
 class DevClass extends Component {
-    // Your App Code
     constructor(props) {
         super(props);
-        var myFirebaseRef = new Firebase('https://dstest142.firebaseio.com');
+        var myFirebaseRef = new Firebase('https://REMOVEDID.firebaseio.com');
         this.itemsRef = myFirebaseRef.child("items");
 
         this.state = {
@@ -31,13 +30,11 @@ class DevClass extends Component {
         };
 
         this.items = [];
-        console.log('ok started');
     }
 
     componentDidMount() {
         // When a todo is added
         this.itemsRef.on('child_added', (dataSnapshot) => {
-            console.log(dataSnapshot);
             this.items.push({id: dataSnapshot.key(), text: dataSnapshot.val().todo});
             this.setState({
                 todoSource: this.state.todoSource.cloneWithRows(this.items)
